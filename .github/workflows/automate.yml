@@ -1,0 +1,32 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Continuous Integration of our Loan API
+
+on:
+  push:
+    branches: [ "main" ] #The code should only execute when someone pushes to main branch
+
+jobs:        #jobs you want to run when someone pushes to main branch
+  build:    #this specifies that it is a build job
+
+    runs-on: ubuntu-latest #the job will run on an ubuntu machine
+
+    steps:
+    - name: we are giving access to our repository to our workflow
+      uses: actions/checkout@v4 #this should always be the first step.This gives access to github to execute
+      #the above code in our github repository.
+
+    - name: Set up Python 3.13.5 #check your python version and install the same version
+      uses: actions/setup-python@v3 #this code will setup python version.
+      with:
+        python-version: "3.13.5"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest
+        pip install -r requirements.txt
+
+    - name: Test with pytest
+      run: pytest
