@@ -16,10 +16,10 @@ jobs:        #jobs you want to run when someone pushes to main branch
       uses: actions/checkout@v4 #this should always be the first step.This gives access to github to execute
       #the above code in our github repository.
 
-    - name: Set up Python 3.13.5 #check your python version and install the same version
+    - name: Set up Python 3.13 #check your python version and install the same version
       uses: actions/setup-python@v3 #this code will setup python version.
       with:
-        python-version: "3.13.5"
+        python-version: "3.13"
 
     - name: Install dependencies
       run: |
@@ -46,7 +46,7 @@ jobs:        #jobs you want to run when someone pushes to main branch
             aws-region: us-east-1
     - name: Login to Amazon ECR
       id: login-ecr
-      uses: aws-actions/amazon-ecr-login@62f4f872db3836360b72999f4b87f1ff13310f3a
+      uses: aws-actions/amazon-ecr-login@v1
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
       env:
