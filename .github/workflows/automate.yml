@@ -47,6 +47,10 @@ jobs:        #jobs you want to run when someone pushes to main branch
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
+      with:
+        registries: 111111111111
+
+
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
       env:
